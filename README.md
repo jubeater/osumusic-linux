@@ -56,6 +56,24 @@ The app looks for a native osu!lazer installation at `$XDG_DATA_HOME/osu`, or
 `~/.local/share/osu` when `XDG_DATA_HOME` is not set. For a custom location,
 set `OSU_LAZER_PATH` to the directory containing `client.realm` before launching.
 
+## CI/CD and Releases
+
+GitHub Actions builds the project on every push to `main` and every pull request.
+To publish Linux installers, update the version in `package.json`, commit the
+change, and push a matching version tag:
+
+```bash
+git add package.json
+git commit -m "release v2.3.82"
+git push
+git tag v2.3.82
+git push origin v2.3.82
+```
+
+Tags beginning with `v` automatically create a GitHub Release containing the
+AppImage and Debian package. The workflow runs on Ubuntu 24.04; the application
+itself has only been tested on Ubuntu 26.04.
+
 ## Tech Info
 
 Frontend: React 19 + TypeScript + Vite
