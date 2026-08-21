@@ -98,10 +98,10 @@ itself has only been tested on Ubuntu 26.04.
 
 ## Tech Info
 
-Frontend: React 19 + TypeScript + Vite
-Animations: Framer Motion
-Desktop: Electron 40.6.0
-Database: Realm (MongoDB)
-AI: Copilot (Github 😎)
+- Frontend: React 19 + TypeScript + Vite
+- Animations: Framer Motion
+- Desktop: Electron 40.6.0
+- Database: Realm (MongoDB)
+- AI: Copilot (Github 😎)
 
 Original project by [tonixtx](https://github.com/xtx-code).
