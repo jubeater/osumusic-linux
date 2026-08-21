@@ -126,7 +126,7 @@ function App() {
         return () => cancelAnimationFrame(requestRef.current as number);
     }, [isSeeking]);
 
-    const [selectedMode, setSelectedMode] = useState(3); // Default to osu!mania (3)
+    const [selectedMode, setSelectedMode] = useState(0); // Default to osu mode(0)
 
     const modes = [
         { id: 0, label: 'osu!', icon: <OsuIcon /> },

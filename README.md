@@ -56,6 +56,28 @@ The app looks for a native osu!lazer installation at `$XDG_DATA_HOME/osu`, or
 `~/.local/share/osu` when `XDG_DATA_HOME` is not set. For a custom location,
 set `OSU_LAZER_PATH` to the directory containing `client.realm` before launching.
 
+#### Electron sandbox troubleshooting
+
+On Ubuntu, the Debian package is preferred because it installs Electron's
+sandbox helper with the required permissions:
+
+```bash
+sudo apt install ./osumusic_2.3.82_amd64.deb
+```
+
+Some systems mount AppImages in a way that prevents the Chromium SUID sandbox
+from working. If the AppImage reports that `chrome-sandbox` is not owned by
+root with mode `4755`, use the Debian package instead. As a temporary AppImage
+fallback, launch it with sandboxing explicitly disabled:
+
+```bash
+./osu.music-2.3.82.AppImage --no-sandbox
+```
+
+This reduces Electron's security isolation, so it should not be the preferred
+way to run the application. Do not change permissions inside `/tmp/.mount-*`;
+that mount is temporary and will be recreated each time.
+
 ## CI/CD and Releases
 
 GitHub Actions builds the project on every push to `main` and every pull request.
