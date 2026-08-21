@@ -45,7 +45,19 @@ export class OsuDbService {
     private osuPath: string;
 
     constructor() {
-        this.osuPath = path.join(os.homedir(), 'Library', 'Application Support', 'osu');
+        this.osuPath = this.findOsuPath();
+    }
+
+    private findOsuPath(): string {
+        const dataHome = process.env.XDG_DATA_HOME || path.join(os.homedir(), '.local', 'share');
+        const candidates = [
+            process.env.OSU_LAZER_PATH,
+            path.join(dataHome, 'osu'),
+            path.join(os.homedir(), '.local', 'share', 'osu'),
+        ].filter((candidate): candidate is string => Boolean(candidate));
+
+        const existingPath = candidates.find((candidate) => fs.existsSync(path.join(candidate, 'client.realm')));
+        return existingPath || candidates[0];
     }
 
     public async openRealm(): Promise<void> {
@@ -77,7 +89,7 @@ export class OsuDbService {
 
         // We limit to 50 for initial testing to avoid huge load times if user has thousands of maps
         // But for a music player we want all. Let's return mapped objects.
-        // Note: Accessing properties on Realm objects is slow if done in a loop without care? 
+        // Note: Accessing properties on Realm objects is slow if done in a loop without care?
         // Actually Realm is lazy. But mapping to JS objects is eager.
         // Let's just map minimal info needed for the list.
 

@@ -13,6 +13,7 @@ dist-electron
 dist-ssr
 release
 *.local
+*.tsbuildinfo
 
 # Editor directories and files
 .vscode/*

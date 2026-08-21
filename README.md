@@ -1,4 +1,12 @@
-# osu!music
+# osu!music-linux
+
+> **Linux build of the original [osu!music](https://github.com/xtx-code/osumusic) project.**
+>
+> This repository exists to package and run the original project on Linux. The
+> concept, design, and original implementation belong to **tonixtx**. Please
+> direct all original-project credit and recognition to the upstream author.
+
+Upstream repository: https://github.com/xtx-code/osumusic
 
 <p align="center">
   <img src="assets/screenshot-desktop.png" width="350" alt="Mobile Design" align="left" style="margin-right: 20px;" />
@@ -32,17 +40,28 @@ Minimalist music player for your **osu! beatmaps** library, designed with the sl
 
 ## Installation
 
-1. **Download**: Grab the latest `.dmg` from the **[Releases](https://github.com/xtx-junkcode/osumusic/releases)** page.
-2. **Install**: Open the `.dmg` file and drag **osu!music** to your **Applications** folder.
-3. **Launch**: Find **osu!music** in your Launchpad and open it. 
-   > *Note: If macOS prevents opening, go to System Settings > Privacy & Security and click "Open Anyway".*
+### Linux
+
+**Tested only on Ubuntu 26.04.** Compatibility with other Linux distributions
+has not been verified.
+
+Build the AppImage and Debian package with:
+
+```bash
+npm install
+npm run dist
+```
+
+The app looks for a native osu!lazer installation at `$XDG_DATA_HOME/osu`, or
+`~/.local/share/osu` when `XDG_DATA_HOME` is not set. For a custom location,
+set `OSU_LAZER_PATH` to the directory containing `client.realm` before launching.
 
 ## Tech Info
 
-Frontend: React 19 + TypeScript + Vite  
-Animations: Framer Motion  
-Desktop: Electron 40.6.0  
-Database: Realm (MongoDB)  
-AI: Gemini 3.1 Pro  
-  
-Created with Gemini 3.1 by tonixtx  
+Frontend: React 19 + TypeScript + Vite
+Animations: Framer Motion
+Desktop: Electron 40.6.0
+Database: Realm (MongoDB)
+AI: Copilot (Github 😎)
+
+Original project by [tonixtx](https://github.com/xtx-code).
